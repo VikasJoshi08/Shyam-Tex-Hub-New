@@ -55,7 +55,7 @@ export const whyChooseUs = [
   {
     title: "Transparent Pricing",
     description: "Competitive and clear pricing for maximum value"
-  }
+  },
    {
     title: "Corporate Expertise",
     description: "Extensive experience working with corporate clients, export houses and domestic brands"
