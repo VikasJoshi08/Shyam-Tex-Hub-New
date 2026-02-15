@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
-import { companyInfo } from '../data/mockData';
-import { MapPin, Phone, Mail } from 'lucide-react';
-import axios from 'axios';
+import React, { useState } from "react";
+import { companyInfo } from "../data/mockData";
+import { MapPin, Phone, Mail } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import axios from "axios";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    requirement: '',
-    message: ''
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    requirement: "",
+    message: "",
   });
 
   const [quoteData, setQuoteData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    fabricType: '',
-    quantity: '',
-    message: ''
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    fabricType: "",
+    quantity: "",
+    message: "",
   });
 
   const [showQuoteForm, setShowQuoteForm] = useState(false);
@@ -31,35 +32,55 @@ const Contact = () => {
   const [isQuoteSubmitting, setIsQuoteSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState(null);
 
+  const handleInputChange = (e, isQuote = false) => {
+    const { name, value } = e.target;
+    if (isQuote) {
+      setQuoteData((prev) => ({ ...prev, [name]: value }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  /* ================= CONTACT FORM (EMAILJS) ================= */
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setStatusMessage(null);
 
     try {
-      const response = await axios.post(`${API}/contact`, formData);
-      setStatusMessage({ type: 'success', text: response.data.message });
-      setFormData({
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        requirement: '',
-        message: ''
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        formData,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      );
+
+      setStatusMessage({
+        type: "success",
+        text: "Thank you! Your message has been sent.",
       });
-      
-      // Auto-hide success message after 5 seconds
-      setTimeout(() => setStatusMessage(null), 5000);
+
+      setFormData({
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        requirement: "",
+        message: "",
+      });
     } catch (error) {
-      setStatusMessage({ 
-        type: 'error', 
-        text: error.response?.data?.detail || 'An error occurred. Please try again.' 
+      console.error("EmailJS Error:", error);
+      setStatusMessage({
+        type: "error",
+        text: "Failed to send message. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
+      setTimeout(() => setStatusMessage(null), 5000);
     }
   };
 
+  /* ================= QUOTE FORM (BACKEND API) ================= */
   const handleQuoteSubmit = async (e) => {
     e.preventDefault();
     setIsQuoteSubmitting(true);
@@ -67,36 +88,29 @@ const Contact = () => {
 
     try {
       const response = await axios.post(`${API}/quote`, quoteData);
-      setStatusMessage({ type: 'success', text: response.data.message });
+      setStatusMessage({ type: "success", text: response.data.message });
+
       setQuoteData({
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        fabricType: '',
-        quantity: '',
-        message: ''
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        fabricType: "",
+        quantity: "",
+        message: "",
       });
+
       setShowQuoteForm(false);
-      
-      // Auto-hide success message after 5 seconds
-      setTimeout(() => setStatusMessage(null), 5000);
     } catch (error) {
-      setStatusMessage({ 
-        type: 'error', 
-        text: error.response?.data?.detail || 'An error occurred. Please try again.' 
+      setStatusMessage({
+        type: "error",
+        text:
+          error.response?.data?.detail ||
+          "An error occurred. Please try again.",
       });
     } finally {
       setIsQuoteSubmitting(false);
-    }
-  };
-
-  const handleInputChange = (e, isQuote = false) => {
-    const { name, value } = e.target;
-    if (isQuote) {
-      setQuoteData(prev => ({ ...prev, [name]: value }));
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
+      setTimeout(() => setStatusMessage(null), 5000);
     }
   };
 
