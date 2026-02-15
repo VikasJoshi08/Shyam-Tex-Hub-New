@@ -106,7 +106,7 @@ const About = () => {
           <div className="text-5xl md:text-5xl font-serif text-white mb-2">
             {stat.number}
           </div>
-          <p className="body-regular text-[#bcbbb4]">
+          <p className="body-regular !text-white">
             {stat.label}
           </p>
         </div>
