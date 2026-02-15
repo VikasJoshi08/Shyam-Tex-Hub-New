@@ -168,10 +168,10 @@ const Home = () => {
       {/* CTA Section */}
       <section className="section-padding-small bg-[#333333] text-white">
         <div className="max-w-[1400px] mx-auto px-10 text-center">
-          <h2 className="hero-medium text-white mb-6">
+          <h2 className="hero-medium !text-white mb-6">
             Ready to Partner With Us?
           </h2>
-          <p className="body-large text-[#bcbbb4] mb-8 max-w-2xl mx-auto">
+          <p className="body-large text-[#bcbbb4] !text-white mb-8 max-w-2xl mx-auto">
             Join leading garment manufacturers and buying houses who trust Shyam Tex Hub 
             for their fabric needs
           </p>
