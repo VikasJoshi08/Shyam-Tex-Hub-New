@@ -85,7 +85,7 @@ const About = () => {
         <div className="max-w-[1400px] mx-auto px-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="heading-1 mb-6">Global Reach & Logistics</h2>
-            <p className="body-large text-[#666666] leading-relaxed text-center">
+            <p className="body-large text-[#666666] leading-relaxed text-center mx-auto max-w-2xl">
               {aboutContent.globalReach}
             </p>
           </div>
@@ -94,22 +94,27 @@ const About = () => {
 
       {/* Stats Section */}
       <section className="section-padding-small bg-[#333333] text-white">
-        <div className="max-w-[1400px] mx-auto px-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            {[
-              { number: "25+", label: "Years Experience" },
-              { number: "500+", label: "Happy Clients" },
-              { number: "12+", label: "Product Categories" },
-              { number: "100%", label: "Quality Assured" }
-            ].map((stat, index) => (
-              <div key={index}>
-                <div className="hero-large text-white mb-2">{stat.number}</div>
-                <p className="body-regular text-[#bcbbb4]">{stat.label}</p>
-              </div>
-            ))}
+  <div className="max-w-[1400px] mx-auto px-10">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+      {[
+        { number: "18+", label: "Years Experience" },
+        { number: "300+", label: "Happy Clients" },
+        { number: "20+", label: "Product Categories" },
+        { number: "100%", label: "Quality Assured" }
+      ].map((stat, index) => (
+        <div key={index}>
+          <div className="text-5xl md:text-6xl font-serif text-white mb-2">
+            {stat.number}
           </div>
+          <p className="body-regular text-[#bcbbb4]">
+            {stat.label}
+          </p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
     </div>
   );
 };

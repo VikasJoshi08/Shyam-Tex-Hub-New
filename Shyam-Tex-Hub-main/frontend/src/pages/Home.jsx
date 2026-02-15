@@ -109,7 +109,7 @@ const Home = () => {
         <div className="max-w-[1400px] mx-auto px-10">
           <div className="text-center mb-16">
             <h2 className="heading-1 mb-4">Our Product Range</h2>
-            <p className="body-large text-[#666666] text-center">
+            <p className="body-large text-[#666666] text-center mx-auto max-w-2xl">
               Extensive range of premium polyester fabrics designed for diverse applications
             </p>
           </div>
@@ -175,9 +175,11 @@ const Home = () => {
             Join leading garment manufacturers and buying houses who trust Shyam Tex Hub 
             for their fabric needs
           </p>
-          <Link to="/contact" className="btn-primary !border-white !text-white hover:!bg-white hover:!text-[#333333]">
-            Get Started Today
+          <Link
+              to="/contact" className="inline-block px-8 py-4 border-2 border-white text-white font-medium tracking-wide transition-all duration-300 hover:bg-white hover:text-[#333333]">
+              Get Started Today
           </Link>
+
         </div>
       </section>
     </div>

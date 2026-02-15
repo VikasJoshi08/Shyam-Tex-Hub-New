@@ -347,7 +347,7 @@ const Contact = () => {
         <div className="max-w-[1400px] mx-auto px-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="heading-1 mb-6">Request a Quote</h2>
-            <p className="body-large text-[#666666] mb-8">
+            <p className="body-large text-[#666666] mb-8" text-center mx-auto max-w-2xl>
               Need specific fabric quantities? Request a detailed quote and our team will 
               provide competitive pricing tailored to your requirements.
             </p>

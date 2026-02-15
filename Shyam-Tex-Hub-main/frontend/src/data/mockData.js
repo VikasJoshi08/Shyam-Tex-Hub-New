@@ -162,6 +162,6 @@ export const navigationLinks = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/about" },
   { name: "Products", path: "/products" },
-  { name: "Clients", path: "/clients" },
+  // { name: "Clients", path: "/clients" },
   { name: "Contact", path: "/contact" }
 ];
